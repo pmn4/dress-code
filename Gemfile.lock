@@ -57,6 +57,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.12.0)
+    rake (10.1.0)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -109,6 +110,7 @@ DEPENDENCIES
   gilt
   koala
   mongoid
+  rake (= 10.1)
   rspec (= 2.10)
   rtr_ruby_api_clients
   sinatra (= 1.4.3)

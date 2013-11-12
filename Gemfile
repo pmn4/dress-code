@@ -16,6 +16,7 @@ gem 'gilt'
 
 # Test (as if we'll get to that)
 group :test do
+  gem 'rake', '10.1'
   gem 'rspec', '2.10'
 end
 
