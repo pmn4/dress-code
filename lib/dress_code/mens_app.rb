@@ -4,12 +4,12 @@ require 'sinatra/reloader' if development?  # in dev, reload your app every time
 require 'json'
 
 require 'gilt'
-require "gilt/client"
+require 'gilt/client'
 
 module Gilt
   class Client
     class Products
-      get :query, "/products"
+      get :query, '/products'
     end
   end
 end
