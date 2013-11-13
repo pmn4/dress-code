@@ -1,4 +1,4 @@
-require 'womens_spec_helper'
+require 'helpers/womens_spec_helper'
 
 describe 'Womens app' do
   it 'should GET /categories' do

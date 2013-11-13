@@ -2,19 +2,19 @@ ENV['RACK_ENV'] = 'test'
 
 require 'rack/test'
 
-module HomeMixin
+module WomensMixin
   include Rack::Test::Methods
-  Dir[File.dirname(__FILE__) + '/../lib/**/*.rb'].each do |file|
+  Dir[File.dirname(__FILE__) + '/../../lib/**/*.rb'].each do |file|
     require file
   end
 
   def app
-    DressCode::HomeApp
+    DressCode::WomensApp
   end
 end
 
 RSpec.configure do |config|
-  config.include HomeMixin
+  config.include WomensMixin
   config.mock_with :rspec
   config.order = 'random'
 end

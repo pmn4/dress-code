@@ -1,16 +1,11 @@
-require 'home_spec_helper'
+require 'helpers/home_spec_helper'
 
 describe 'Home app' do
-  before do
-    get '/'
-  end
-
   it 'should GET /' do
-    last_response.should be_ok
-  end
-
-  it 'should greet us heartily' do
-    last_response.body.should == 'Hello World!'
+    get '/'
+    last_response.should be_redirect
+    follow_redirect!
+    last_request.url.should == 'http://example.org/index.html'
   end
 end
 

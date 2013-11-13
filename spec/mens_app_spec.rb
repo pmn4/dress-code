@@ -1,4 +1,4 @@
-require 'mens_spec_helper'
+require 'helpers/mens_spec_helper'
 
 describe 'Mens app' do
   it 'should GET /' do
