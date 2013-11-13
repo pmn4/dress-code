@@ -11,8 +11,8 @@ module DressCode
 		end
 
 		get '/categories' do
-			client = ProductCatalogClient.new({:host => "http://pcvarnish-lbn.stage.renttherunway.it:6081"})
-			client.get_dress_categories
+			client = ProductCatalogClient.new({:host => "http://pcvarnish-lb.stage.renttherunway.it:6081"})
+			client.get_dress_categories.to_json
 		end
 	end
 end
