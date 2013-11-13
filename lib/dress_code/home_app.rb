@@ -8,8 +8,10 @@ module DressCode
 			register Sinatra::Reloader
 		end
 
+    set :public_folder, 'public'
+
 		get '/' do
-		  "Hello World!"
+      redirect '/index.html'
 		end
 	end
 end
