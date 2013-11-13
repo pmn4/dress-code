@@ -1,0 +1,12 @@
+<%#
+	Known Providers:
+		Facebook
+%>
+<% case params[:provider_name]
+ when blank %>
+	<div class="messages error">Oauth Provider Required: <%= params[:provider_name] %></div>
+<% when 'facebook' %>
+	<a href="https://www.facebook.com/oauth/authorize?response_type=token&amp;client_id=<%= params[:api_key] %>">Login using <%= params[:provider_name] %></a>
+<% else %>
+	<div class="messages error">Oauth Provider Required: <%= params[:provider_name] %></div>
+<% end %>
