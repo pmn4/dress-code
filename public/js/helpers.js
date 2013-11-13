@@ -1,5 +1,5 @@
 // Asynchronously load templates located in different HTML files
-window.templateLoader = {
+var templateLoader = {
   load: function(views, callback) {
     var deferreds = [];
     $.each(views, function(index, view) {

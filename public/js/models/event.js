@@ -1,10 +1,10 @@
-window.DressCodeEvent = Backbone.Model.extend({
+var DressCodeEvent = Backbone.Model.extend({
   initialize: function() {
-    // More TK here
+    console.log('Event model initialized.');
   }
 });
 
-window.DressCodeEventCollection = Backbone.Collection.extend({
+var DressCodeEventCollection = Backbone.Collection.extend({
   model: DressCodeEvent
 });
 

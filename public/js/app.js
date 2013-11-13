@@ -1,4 +1,4 @@
-window.Router = Backbone.Router.extend({
+var Router = Backbone.Router.extend({
   routes: {
     '': 'home'
   }
