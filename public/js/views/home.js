@@ -1,16 +1,21 @@
 var HomeView = Backbone.View.extend({
   initialize: function() {
+    var self = this;
+
     // Fetch dress JSON for display
     this.collection = new DressCollection();
-    this.collection.fetch();
+    this.collection.fetch({
+      success: function(collection) {
+        self.render();
+      }
+    });
     this.collection.bind('reset', this.render, this);
-
-    console.log('Home view initialized.');
   }
 , render: function() {
     $(this.el).html(this.template());
-    this.collection.each(function(idx, item) {
-      $(this.el).append('<ul>' + item.get('lengths') + '</ul>');
+    var occasions = this.collection['models'][0]['attributes']['occasion'];
+    _.each(occasions, function(element, index, list) {
+      $('#dresses').append('<li>' + element + '</li>');
     });
     return this;
   }
