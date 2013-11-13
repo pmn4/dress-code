@@ -10,19 +10,17 @@ module DressCode
 			@@provider_name = 'facebook'
 			@@app_id = '356865567790385'
 			@@secret_key = 'c79a6cf949fb13dfcf66fb464c3053b4' # todo: move to config
-			@@callback_url = ''
+			@@callback_path = "#{@@provider_name}/oauth"
+
+			puts app.inspect
 
 			app.get "#{@@provider_name}/login" do
-				params[:provider_name] = @@provider_name
-				params[:app_id] = @@app_id
-				params[:secret_key] = @@secret_key
+				@oauth = Koala::Facebook::OAuth.new(@@app_id, @@app_secret, create_url(request.scheme, request.host, @@callback_path))
 
-				erb :'login/facebook'
+				erb :'login/facebook', :oath_url => @oauth.url_for_oauth_code
 			end
 
-			app.get "#{@@provider_name}/oauth" do
-				# @oauth = Koala::Facebook::OAuth.new(@@app_id, @@app_secret, @@callback_url)
-				# @oauth.get_user_info_from_cookies(cookies)
+			app.get @@callback_path do
 			end
 
 			app.get "#{@@provider_name}/events" do
