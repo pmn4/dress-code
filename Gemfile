@@ -4,6 +4,7 @@ ruby '1.9.3'
 # Main application
 gem 'koala'
 gem 'mongoid'
+gem 'sass'
 gem 'sinatra', '1.4.3'
 gem 'sinatra-contrib'
 gem 'unicorn'
@@ -16,6 +17,8 @@ gem 'gilt'
 
 # Test (as if we'll get to that)
 group :test do
+  gem 'pry'
+  gem 'pry-debugger'
   gem 'rake', '10.1'
   gem 'rspec', '2.10'
 end
