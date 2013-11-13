@@ -9,6 +9,10 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  font-family: Arial, sans-serif;
+}
+
 li {
   font-size: 2em;
 }
@@ -16,3 +20,14 @@ li {
 ul {
   list-style-type: none;
 }
+
+#left-column {
+  display: block;
+  float: left;
+}
+
+#right-column {
+  display: block;
+  float: right;
+}
+

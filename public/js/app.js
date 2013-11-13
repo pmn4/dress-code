@@ -8,7 +8,7 @@ var Router = Backbone.Router.extend({
 , home: function() {
     // Instantiate the home view; it'll render after
     // it fetches all the JSON it needs from RTR & Gilt
-    this.homeView = new HomeView();
+    this.homeView = new HomeView({ collection: MensWearCollection });
     $('#page-content').html(this.homeView.el);
   }
 });
