@@ -2,12 +2,18 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 # Main application
-gem 'koala'
-gem 'mongoid'
 gem 'sass'
 gem 'sinatra', '1.4.3'
 gem 'sinatra-contrib'
 gem 'unicorn'
+
+# Auth
+gem 'koala'
+
+# DB
+gem 'bson_ext'
+gem 'mongo'
+gem 'mongoid'
 
 # RTR services
 gem 'rtr_ruby_api_clients'
