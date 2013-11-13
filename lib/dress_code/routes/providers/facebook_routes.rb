@@ -14,7 +14,7 @@ module DressCode
 
 			puts app.inspect
 
-			app.get "#{@@provider_name}/login" do
+			app.get "/#{@@provider_name}/login" do
 				@oauth = Koala::Facebook::OAuth.new(@@app_id, @@app_secret, create_url(request.scheme, request.host, @@callback_path))
 
 				erb :'login/facebook', :oath_url => @oauth.url_for_oauth_code
@@ -23,7 +23,7 @@ module DressCode
 			app.get @@callback_path do
 			end
 
-			app.get "#{@@provider_name}/events" do
+			app.get "/#{@@provider_name}/events" do
 				@graph = Koala::Facebook::API.new(params[:oauth_access_token])
 				@graph.get_object('me')
 			end
