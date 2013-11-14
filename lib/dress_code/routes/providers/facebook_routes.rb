@@ -7,6 +7,14 @@ require 'koala'
 
 module DressCode
 	module FacebookRoutes
+
+    # We should probably move this elsewhere, but it's ok here for now
+    class Event
+      include Mongoid::Document
+
+      field :event_data, type: String
+    end
+
 		TOKEN_COOKIE_NAME = 'fb_id'
 
 		def self.registered(app)
@@ -47,7 +55,18 @@ module DressCode
 				@graph = Koala::Facebook::API.new(access_token)
 				me = @graph.get_object('me')
 				events = @graph.get_connections(me['id'], 'events')
-				events.to_json
+
+        # Write all events to Mongo
+        events.each do |event|
+          begin
+            fb_event = Event.new({:event_data => event})
+            fb_event.save
+          rescue Exception => e
+            puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
+           end
+        end
+
+        events.to_json
 			end
 
 			# app.post "/#{@@provider_name}/event/:event_id" do
@@ -64,6 +83,16 @@ module DressCode
 					:picture => 'http://www.tokyois.com/main/wp-content/uploads/2011/02/Patrick_Newell_info.jpg',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
+
+        # Write DressCode update to Mongo (TODO: we should update
+        # the existing document rather than create a new one)
+        begin
+          dresscode_event = Event.new({:event_data => post})
+          dresscode_event.save
+        rescue Exception => e
+          puts "\n\nAn error occurred saving DressCode event data: #{e}\n\n"
+        end
+
 				post.to_json
 			end
 
