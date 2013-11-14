@@ -2,23 +2,50 @@
   Description: Styling for the glory that is... DRESS CODE
 */
 
-// General
+/* General */
+
+// I don't always use free knockoffs of RTR fonts, but when
+// I do, they're Montserrat (courtesy of Google fonts)
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+  background-color: #222;
+}
 
 h1 {
-  font-family: Arial, sans-serif;
+  color: #d90077; // RTR pink
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
 h2 {
-  font-family: Arial, sans-serif;
+  color: #fff;
+  font-family: Garamond, serif;
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+}
+
+h3 {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 li {
-  font-size: 2em;
+  color: #fff;
+  font-family: Garamond, serif;
+  font-size: 1.2em;
 }
 
 ul {
   list-style-type: none;
+}
+
+#filter {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 200px;
 }
 
 #left-column {
