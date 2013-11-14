@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sinatra/base'
-require 'sinatra/reloader' if development?  # in dev, reload your app every time you make a change.  no more restarting!
 
 require_relative 'routes/providers/facebook_routes'
 
@@ -10,15 +9,17 @@ module DressCode
 			register Sinatra::Reloader
 		end
 
-    set :public_folder, 'public'
+		set :public_folder, 'public'
+
 		register DressCode::FacebookRoutes
 
 		get '/' do
-      redirect '/index.html'
+			redirect '/index.html'
 		end
 
 		error 400..510 do
 			puts inspect
+			request.env['sinatra_error']
 		end
 	end
 end
