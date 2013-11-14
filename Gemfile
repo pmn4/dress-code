@@ -11,9 +11,10 @@ gem 'unicorn'
 gem 'koala'
 
 # DB
+gem 'activemodel', '~> 3.0.0'
 gem 'bson_ext'
 gem 'mongo'
-gem 'mongoid'
+gem 'mongoid', '~> 2.0.0'
 
 # RTR services
 gem 'rtr_ruby_api_clients'
