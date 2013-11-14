@@ -13,7 +13,7 @@ var Router = Backbone.Router.extend({
   }
 });
 
-templateLoader.load(['HomeView'], function() {
+templateLoader.load(['HomeView', 'MenswearView'], function() {
   var app = new Router();
   Backbone.history.start();
 });

@@ -3,6 +3,7 @@ ruby '1.9.3'
 
 # Main application
 gem 'sass'
+gem 'compass'
 gem 'sinatra', '1.4.3'
 gem 'sinatra-contrib'
 gem 'unicorn'

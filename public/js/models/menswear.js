@@ -4,9 +4,23 @@ var MensWear = Backbone.Model.extend({
   }
 });
 
+var MensWearCategory = Backbone.Model.extend({
+  initialize: function() {
+    // Initialization magicks will go here
+  }
+});
+
+var MensWearCategoryCollection = Backbone.Collection.extend({
+  model: MensWearCategory
+, url: '/mens/categories'
+, initialize: function() {
+    // Initialization magicks will go here
+  }
+});
+
 var MensWearCollection = Backbone.Collection.extend({
   model: MensWear
-, url: '/mens/categories'
+, url: '/mens'
 , initialize: function() {
     // Initialization magicks will go here
   }

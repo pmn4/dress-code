@@ -4,17 +4,29 @@ var HomeView = Backbone.View.extend({
     this.secondCollection = options.collection;
 
     this.collection = new DressCollection();
-    this.secondCollection = new MensWearCollection();
+    this.menswearCategories = new MensWearCategoryCollection();
+    this.menswear = new MensWearCollection();
 
     // Don't render the page until both dresses AND menswear are ready
-    this.collection.fetch({
-      success: function() {
-        self.secondCollection.fetch({
-          success: function() {
+    var byref = {activeRequests: 0},
+        fnSuccess = function() {
+          byref.activeRequests--;
+          if(!byref.activeRequests) {
             self.render();
           }
-        });
-      }
+        };
+    byref.activeRequests++;
+    this.collection.fetch({
+      success: fnSuccess
+    });
+    byref.activeRequests++;
+    this.menswearCategories.fetch({
+      success: fnSuccess
+    });
+    byref.activeRequests++;
+    this.menswear.fetch({
+      data: 'q[]=Belts',
+      success: fnSuccess
     });
 
     this.collection.bind('reset', this.render, this);
@@ -25,10 +37,12 @@ var HomeView = Backbone.View.extend({
     _.each(occasions, function(element, index, list) {
       $('#dresses').append('<li>' + element + '</li>');
     });
-    var categories = this.secondCollection['models'][0]['attributes']['categories'];
+    var categories = this.menswearCategories['models'][0]['attributes']['categories'];
     _.each(categories, function(element, index, list) {
-      $('#menswear').append('<li>' + element + '</li>');
+      $('#menswear-categories').append('<li>' + element + '</li>');
     });
+    var menswear = this.menswear['models'][0]['attributes']['products'];
+    $("#menswear").append(_.template($("#tpl-menswear").html(), {styles: menswear}));
     return this;
   }
 });
