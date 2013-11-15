@@ -1,6 +1,10 @@
 <h1>Dress Code Summary</h1>
 <h2>Check out your mega sweet event!</h2>
 <div id='dress-code-summary'>
-  <ul id='summary'>
-  </ul>
+  <!-- Because this is rendered by public/js/views/code.js, -->
+  <!-- we're ALREADY IN AN UNDERSCORE TEMPLATE #templateception -->
+  <% var eventData = JSON.parse(this.collection['models'][0]['attributes']['event_data']); %>
+  <p>What: <%= eventData.name %></p>
+  <p>When: <%= eventData.start_time %></p>
+  <p>Where: <%= eventData.location %></p>
 </div>
