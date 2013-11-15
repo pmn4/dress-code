@@ -10,6 +10,9 @@
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans:700|Amatic+SC:700|Amatic+SC);
 
 $highlight-color: green;
+$primary-color: white;
+$secondary-color: #222;
+$tertiary-color: #2fc1d0;
 
 /*********************************************
  * GLOBAL STYLES
@@ -18,7 +21,7 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 16px;
   line-height: 1.2em;
-  background-color: #222;
+  background: $secondary-color url('/images/fabric.png') repeat;
 }
 
 h1 {
@@ -33,13 +36,14 @@ h5,
 h6 {
   font-family: 'Amatic SC', cursive;
   font-weight: 700;
+  color: $tertiary-color;
 
   span {
     font-weight: normal;
   }
 }
-$h1-font-size: 100px; // this was just for the presentaiton I did
-$h6-font-size: 64px;
+$h1-font-size: 64px; // this was just for the presentaiton I did
+$h6-font-size: 24px;
 
 $hmax: 6;
 @for $i from 1 through $hmax {
@@ -99,18 +103,23 @@ $filter-width: 300px;
     background-color: $filter-bg;
   }
 }
+$tile-size: 200px;
+.style-tile-wrapper {
+  margin: 0 2px 2px 0;
+}
 .style-tile {
-  height: 200px;
-  width: 200px;
-  float: left;
-  margin: 0 25px 25px 0;
-  @include border-radius(50px 50px 0 0);
+  position: relative;
+  height: $tile-size;
+  width: $tile-size;
+  border: $tile-size/20 solid transparent;
   background-position: center center;
   background-repeat: no-repeat;
   @include background-size(cover);
 
   &.selected {
-    border-color: $highlight-color;
+    border-color: $tertiary-color;
     @include box-shadow;
   }
 }
+
+@import '_isotope';

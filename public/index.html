@@ -14,6 +14,7 @@
     <script src='js/lib/jquery-1.10.2.min.js'></script>
     <script src='js/lib/underscore-min.js'></script>
     <script src='js/lib/backbone-min.js'></script>
+    <script src='js/lib/jquery.isotope.min.js'></script>
 
     <script src='js/models/event.js'></script>
     <script src='js/models/dress.js'></script>
@@ -26,17 +27,15 @@
     <script id='tpl-menswear' type="text/template">
       <h2>Man Things</h2>
       <ul>
-        <% _.each(styles, function(style) { %>
+        <% _.each(styles, function(style, index) { %>
           <%
             // the first item is probably too small, so let's try to get the second largest image
             var image_urls = _.toArray(style.image_urls);
-            console.log(style.name, image_urls);
             var img = (image_urls[1] || image_urls[0])[0];
-            console.log(style.name, img);
           %>
           <% if(img) { %>
-            <li>
-              <div class="style-tile" style="background-image: url('<%= img.url %>');">
+            <li class="style-tile-wrapper">
+              <div class="style-tile <%= index % 2 ? '' : 'selected' %>" style="background-image: url('<%= img.url %>');">
               </div>
             </li>
           <% } %>

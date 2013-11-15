@@ -43,6 +43,13 @@ var HomeView = Backbone.View.extend({
     });
     var menswear = this.menswear['models'][0]['attributes']['products'];
     $("#menswear").append(_.template($("#tpl-menswear").html(), {styles: menswear}));
+
+    $('#menswear').isotope({
+      // options
+      itemSelector : '.style-tile-wrapper',
+      layoutMode : 'fitRows'
+    });
+
     return this;
   }
 });
