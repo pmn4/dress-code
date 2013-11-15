@@ -27,3 +27,7 @@ templateLoader.load(['HomeView', 'CodeView'], function() {
   });
 });
 
+$(document).delegate(".style-tile", "click", function() {
+  var $this = $(this), val = $this.val();
+  $(this).toggleClass("selected", !val).find("input").val(!val ? "true" : "");
+});

@@ -45,13 +45,15 @@
       <div>
         <% _.each(_.sortBy(styles, function() { return Math.random(); }), function(style, index) { %>
           <%
-            var img;
+            var img, id;
             // the first item is probably too small, so let's try to get the second largest image
             if(style.image_urls) {
               var image_urls = _.toArray(style.image_urls);
               img = (image_urls[1] || image_urls[0])[0];
+              id = "gilt|" + style.id;
             } else {
               img = {url: style['img270xFrontURL']}
+              id = "rtr|" + style.style_name;
             }
             var matchClass = '';
             switch(Math.floor(Math.random() * 4)){
@@ -63,7 +65,8 @@
           %>
           <% if(img) { %>
             <div class="style-tile-wrapper">
-              <div class="style-tile <%= index % 2 ? '' : 'selected' %> <%= matchClass %>" style="background-image: url('<%= img.url %>');">
+              <div class="style-tile <%= matchClass %>" style="background-image: url('<%= img.url %>');">
+                <input type="hidden" name="selected_style[<%- id %>]" />
               </div>
             </div>
           <% } %>
