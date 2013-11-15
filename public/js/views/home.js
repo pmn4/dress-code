@@ -31,7 +31,7 @@ var HomeView = Backbone.View.extend({
     // });
     byref.activeRequests++;
     this.styles.fetch({
-      data: 'q[]=suit',
+      data: 'q[]=snow',
       success: fnSuccess
     });
 
