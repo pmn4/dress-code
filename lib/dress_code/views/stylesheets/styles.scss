@@ -3,29 +3,22 @@
 */
 
 @import 'compass/reset',
-        'compass/css3';
+        'compass/css3',
+        '_variables';
 
 // General
 
 @import url(http://fonts.googleapis.com/css?family=Josefin+Sans:700|Amatic+SC:700|Amatic+SC);
 
-$highlight-color: green;
-$primary-color: white;
-$secondary-color: #222;
-$tertiary-color: #2fc1d0;
 
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 body {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 1.2em;
   background: $secondary-color url('/images/fabric.png') repeat;
-}
-
-h1 {
-  text-align: center;
 }
 
 h1,
@@ -75,34 +68,59 @@ ul {
 }
 
 
-$filter-bg: red;
 $filter-width: 300px;
-
-#filter {
+$filter-border-width: 10px;
+$filter-background-color: $primary-color;
+$filter-border-color: $tertiary-color;
+$filter-icon-color: $primary-color;
+#filter-menu {
   position: fixed;
   height: 100%;
   left: -$filter-width;
   top: 0;
-  width: $filter-width;
   height: 100%;
+  z-index: 10; //isotope!
 
-  background-color: $filter-bg;
+  background-color: $filter-background-color;
+  border-right: 1px solid $filter-background-color;
 
   @include transition(all 1s ease-out);
+  @include box-shadow;
 
   &:hover {
     left: 0;
     @include transition(all 0.5s ease-out);
   }
 
+  .contents {
+    width: $filter-width - $filter-border-width;
+    height: 100%;
+    border-right: $filter-border-width solid $filter-border-color;
+  }
+
   .tab {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 100%;
     height: 40px;
-    width: 40px;
+    width: 36px;
 
-    background-color: $filter-bg;
+    background-color: $filter-border-color;
+    border: 1px solid $filter-background-color;
+    border-left: 0;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 1px;
+      height: 4px;
+      width: 28px;
+      border-width: 12px 0;
+      border-style: double;
+      border-color: $filter-icon-color;
+      background: transparent;
+    }
   }
 }
 $tile-size: 200px;
@@ -124,4 +142,5 @@ $tile-size: 200px;
   }
 }
 
-@import '_isotope';
+@import '_isotope',
+        '_header';
