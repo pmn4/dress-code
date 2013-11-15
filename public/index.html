@@ -8,7 +8,10 @@
   <body>
     <div id="filter-menu">
       <div class="tab"></div>
-      <div class="contents"></div>
+      <div class="contents">
+        <ul id="occasion-types">
+        </ul>
+      </div>
     </div>
     <header>
       <div class="header-wrapper">
@@ -38,23 +41,34 @@
     <script src='js/app.js'></script>
 
 
-    <script id='tpl-menswear' type="text/template">
-      <h2>Man Things</h2>
-      <ul>
-        <% _.each(styles, function(style, index) { %>
+    <script id='tpl-styles' type="text/template">
+      <div>
+        <% _.each(_.sortBy(styles, function() { return Math.random(); }), function(style, index) { %>
           <%
+            var img;
             // the first item is probably too small, so let's try to get the second largest image
-            var image_urls = _.toArray(style.image_urls);
-            var img = (image_urls[1] || image_urls[0])[0];
+            if(style.image_urls) {
+              var image_urls = _.toArray(style.image_urls);
+              img = (image_urls[1] || image_urls[0])[0];
+            } else {
+              img = {url: style['img270xFrontURL']}
+            }
+            var matchClass = '';
+            switch(Math.floor(Math.random() * 4)){
+              case 0: matchClass = 'no-match'; break;
+              case 1: matchClass = 'single-match'; break;
+              case 2: matchClass = 'double-match'; break;
+              case 3: matchClass = ''; break;
+            }
           %>
           <% if(img) { %>
-            <li class="style-tile-wrapper">
-              <div class="style-tile <%= index % 2 ? '' : 'selected' %>" style="background-image: url('<%= img.url %>');">
+            <div class="style-tile-wrapper">
+              <div class="style-tile <%= index % 2 ? '' : 'selected' %> <%= matchClass %>" style="background-image: url('<%= img.url %>');">
               </div>
-            </li>
+            </div>
           <% } %>
         <% }) %>
-      </ul>
+      </div>
     </script>
   </body>
 </html>

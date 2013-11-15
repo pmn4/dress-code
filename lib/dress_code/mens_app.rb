@@ -6,6 +6,8 @@ require 'json'
 require 'gilt'
 require 'gilt/client'
 
+require_relative 'helpers/gilt_helper'
+
 module Gilt
   class Client
     class Products
@@ -20,23 +22,15 @@ module DressCode
 			register Sinatra::Reloader
 		end
 
+		include GiltHelper
+
 		before do
 			content_type :json
-			@product_client = Gilt::Product.client('0b6c9ad5cbc67f6c1d7ff738f6e19d4a')
-			@sale_client = Gilt::Sale.client('0b6c9ad5cbc67f6c1d7ff738f6e19d4a')
 		end
 
 		get '/' do
-			request = @product_client.query
-			p = {
-				'apikey' => '0b6c9ad5cbc67f6c1d7ff738f6e19d4a',
-				'store' => Gilt::Stores::MEN,
-				'rows' => 100
-			}.merge(params)
-			p['q'] = p['q'].join(' ') if p['q'].respond_to?(:join)
-			request.params(p)
-			response = request.perform.parse
-			response.to_json
+			results = GiltHelper::query_results(params)
+			results.to_json
 		end
 
 		get '/categories' do
