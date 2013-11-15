@@ -1,10 +1,14 @@
 var DressCodeEvent = Backbone.Model.extend({
   initialize: function() {
-    console.log('Event model initialized.');
+    // Initialization magicks TK
   }
 });
 
 var DressCodeEventCollection = Backbone.Collection.extend({
   model: DressCodeEvent
+, url: '/code'
+, initialize: function() {
+    // Even more initialization magicks TK
+  }
 });
 

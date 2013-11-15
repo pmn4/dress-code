@@ -24,6 +24,17 @@ module DressCode
 			redirect '/index.html'
 		end
 
+    get '/code' do
+      # We'll just pick the first event in the DB for now
+      content_type :json
+      event = FacebookRoutes::Event.first
+      event.to_json
+    end
+
+    get '/event_summary' do
+      redirect '/event.html'
+    end
+
 		error 400..510 do
 			puts inspect
 			request.env['sinatra_error']

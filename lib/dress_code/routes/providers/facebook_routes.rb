@@ -59,7 +59,7 @@ module DressCode
         # Write all events to Mongo
         events.each do |event|
           begin
-            fb_event = Event.new({:event_data => event})
+            fb_event = Event.new({:event_data => event.to_json})
             fb_event.save
           rescue Exception => e
             puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
