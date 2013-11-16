@@ -84,14 +84,11 @@ module DressCode
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
 
-        # Write DressCode update to Mongo (TODO: we should update
-        # the existing document rather than create a new one)
-        begin
-          dresscode_event = Event.new({:event_data => post})
-          dresscode_event.save
-        rescue Exception => e
-          puts "\n\nAn error occurred saving DressCode event data: #{e}\n\n"
-        end
+        ################
+        ##### TODO #####
+        ################
+        #
+        # Write filter images to Mongo document
 
 				post.to_json
 			end
