@@ -38,16 +38,23 @@ module DressCode
 			results.to_json
 		end
 
-   get '/code' do
-      # We'll just pick the first event in the DB for now
+    get '/code/:id' do
       content_type :json
-      event = FacebookRoutes::Event.first
+
+      begin
+        event = FacebookRoutes::Event.find(params[:id])
+      rescue
+        event = {}
+      end
+
       event.to_json
     end
 
-    get '/event_summary' do
-      redirect '/event.html'
+    get '/:id' do
+      # Moving this to the server so we can use the ID param
+      erb :event
     end
+
 		error 400..510 do
 			puts inspect
 			request.env['sinatra_error']

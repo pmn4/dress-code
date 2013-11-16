@@ -1,10 +1,11 @@
 var Router = Backbone.Router.extend({
   routes: {
     'index.html': 'home'
-  , 'event.html': 'code'
   }
 , initialize: function() {
-    // Any special initialization magic will go here
+    // So I decided to just use the Mongo ID alone as the identifier
+    // for the route, which means we gotta match on any number
+    this.route(/\d+/, 'code');
   }
 , home: function() {
     // Instantiate the home view; it'll render after
