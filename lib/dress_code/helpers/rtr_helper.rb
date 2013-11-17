@@ -7,6 +7,24 @@ module RTR
 			attr_accessor :styles
 			attr_accessor :rejected_styles
 
+			def meta
+				@meta ||= JSON.parse(name) rescue nil
+				@meta
+			end
+
+			def dress_code?
+puts '>>>>', @meta, name, '<<<<<'
+				meta.present?
+			end
+
+			def label
+				dress_code? ? meta['name'] : self.name
+			end
+
+			def search
+				dress_code? ? meta['search'] : self.name
+			end
+
 			def styles?
 				return self.length() > 0
 			end
@@ -25,7 +43,7 @@ module RTR
 
 			def as_json(options = {})
 				hash = {}
-				self.instance_variables.each do |iv|
+				self.instance_variables.concat([:label, :search]).each do |iv|
 					next if [:@styles, :@rejected_styles].include?(iv)
 
 					iv_name = iv.to_s[1..-1]
@@ -55,13 +73,15 @@ module DressCode
 			})
 			@product_catalog_client
 		end
+		def self.get_dress_code_shortlists()
+			shortlists = user_service_client.get_collections(7172256)
+			dress_code_shortlists = shortlists.select {|s| s.dress_code?}
+		end
 		def self.get_shortlist(id)
 			return nil if id.blank?
 
 			shortlist = user_service_client.get_collection(id)
-puts shortlist.to_json
 			merge_shortlist_styles(shortlist)
-puts shortlist.to_json
 			shortlist
 		end
 		def self.merge_shortlist_styles(shortlists)
@@ -84,13 +104,7 @@ puts shortlist.to_json
 				list.rejected_styles = list.rejected_style_names.map{|sn| all_styles.find{|s| s['styleName'] == sn}}.compact unless list.rejected_style_names.nil?
 			end
 		end
-		def self.query_results(params)
-			occasion = params[:q]
-			occasion = occasion[0] if occasion.is_a? Array
-
-			# map this to one of our pre-defined shortlists
-
-			shortlist_id = '528386ce0cf2d9db8a4b5a69'
+		def self.query_results(shortlist_id)
 			shortlist = get_shortlist(shortlist_id)
 			shortlist.styles
 		end

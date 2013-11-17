@@ -10,7 +10,8 @@ var Router = Backbone.Router.extend({
 , home: function() {
     // Instantiate the home view; it'll render after
     // it fetches all the JSON it needs from RTR & Gilt
-    this.homeView = new HomeView({ collection: MensWearCollection });
+    // this.homeView = new HomeView({ collection: MensWearCollection });
+    this.homeView = new HomeView();
     $('#page-content').html(this.homeView.el);
   }
 , code: function() {
@@ -29,6 +30,8 @@ templateLoader.load(['HomeView', 'CodeView'], function() {
 });
 
 $(document).delegate(".style-tile", "click", function() {
-  var $this = $(this), val = $this.val();
-  $(this).toggleClass("selected", !val).find("input").val(!val ? "true" : "");
+  var $this = $(this), $input = $this.find("input"), input = $input.get(0);
+  $this.toggleClass("selected", !input.checked);
+  $input.prop('checked', !input.checked);
+  $("#dress-code-header").toggleClass("submittable", !!($(".style-tile input:checked").length));
 });

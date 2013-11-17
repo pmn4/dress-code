@@ -6,28 +6,33 @@
     <link href='styles/styles.css' rel='stylesheet'>
   </head>
   <body>
-    <div id="filter-menu">
-      <div class="tab"></div>
-      <div class="contents">
-        <ul id="occasion-types">
-        </ul>
-      </div>
-    </div>
-    <header>
-      <div class="header-wrapper">
-        <object class="logo" data="images/dress-code-logo.svg" type="image/svg+xml"></object>
-        <h1>Dress Code</h1>
-        <h2>You Can't Dress Your Friends</h2>
-        <h3>...but you can try</h3>
-        <div class="instructions">
-          <p>
-            Choose the things (1 is fine) that you want your guests to wear
-          </p>
+    <form action="/post" method="post">
+      <div id="filter-menu">
+        <div class="tab"></div>
+        <div class="contents">
+          <div id="dress-code-filters"></div>
+          <ul id="occasion-types">
+          </ul>
         </div>
       </div>
-    </header>
-    <div id='page-content'>
-    </div>
+      <header>
+        <div id="filter-menu-cta">&laquo; filters</div>
+        <div class="header-wrapper" id="dress-code-header">
+          <object class="logo" data="images/dress-code-logo.svg" type="image/svg+xml"></object>
+          <h1>Dress Code</h1>
+          <h2>You Can't Dress Your Friends</h2>
+          <h3>...but you can try</h3>
+          <div class="instructions">
+            <p>
+              Choose the things (1 is fine) that you want your guests to wear
+            </p>
+          </div>
+          <button type="submit" class="btn btn-4 btn-4c icon-arrow-right">Post to Event</button>
+        </div>
+      </header>
+      <div id='page-content'>
+      </div>
+    </form>
     <script src='js/lib/jquery-1.10.2.min.js'></script>
     <script src='js/lib/underscore-min.js'></script>
     <script src='js/lib/backbone-min.js'></script>
@@ -53,7 +58,7 @@
               id = "gilt|" + style.id;
             } else {
               img = {url: style['img270xFrontURL']}
-              id = "rtr|" + style.style_name;
+              id = "rtr|" + style.styleName;
             }
             var matchClass = '';
             switch(Math.floor(Math.random() * 4)){
@@ -66,13 +71,27 @@
           <% if(img) { %>
             <div class="style-tile-wrapper">
               <div class="style-tile <%= matchClass %>" style="background-image: url('<%= img.url %>');">
-                <input type="hidden" name="selected_style[<%- id %>]" />
+                <input type="checkbox" name="selected_style[<%- id %>]" value="<%- JSON.stringify(style) %>" />
               </div>
             </div>
           <% } %>
         <% }) %>
       </div>
     </script>
+    <style id="tpl-filters" type="text/template">
+      <div>
+        <ul>
+          <% _.each(filters, function(filter) { %>
+            <% console.log(filter); %>
+            <li>
+              <a href="/filter?shortlistId=<%= filter.shortlistId %>">
+                <%= filter.label %>
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </style>
   </body>
 </html>
 

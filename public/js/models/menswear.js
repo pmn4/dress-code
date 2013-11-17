@@ -4,13 +4,19 @@ var MensWearCategory = Backbone.Model.extend({
   }
 });
 
-var Styles = Backbone.Model.extend({
+var MensWear = Backbone.Model.extend({
   initialize: function() {
     // Initialization magicks will go here
   }
 });
 
-var MensWear = Backbone.Model.extend({
+var StylesModel = Backbone.Model.extend({
+  initialize: function() {
+    // Initialization magicks will go here
+  }
+});
+
+var FiltersModel = Backbone.Model.extend({
   initialize: function() {
     // Initialization magicks will go here
   }
@@ -33,8 +39,16 @@ var MensWearCollection = Backbone.Collection.extend({
 });
 
 var Styles = Backbone.Collection.extend({
-  model: MensWear,
+  model: StylesModel,
   url: '/filter',
+  initialize: function() {
+    // Initialization magicks will go here
+  }
+});
+
+var Filters = Backbone.Collection.extend({
+  model: FiltersModel,
+  url: '/filters',
   initialize: function() {
     // Initialization magicks will go here
   }

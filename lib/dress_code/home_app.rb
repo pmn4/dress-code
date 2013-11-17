@@ -26,9 +26,23 @@ module DressCode
 			redirect '/index.html'
 		end
 
+		get '/filters' do
+			results = RtrHelper::get_dress_code_shortlists
+
+			content_type :json
+			{filters: results}.to_json
+		end
+
 		get '/filter' do
-			gilt_results = GiltHelper::query_results(params)
-			rtr_results = RtrHelper::query_results(params)
+			shortlist_id = params[:shortlistId]
+			if shortlist_id.present?
+				shortlist = RtrHelper::get_shortlist(shortlist_id)
+			else
+				puts '>s>', RtrHelper::get_dress_code_shortlists.to_json, '<<<'
+				shortlist = RtrHelper::get_dress_code_shortlists().first
+			end
+			gilt_results = GiltHelper::query_results(shortlist.search)
+			rtr_results = RtrHelper::query_results(shortlist.id)
 
 			results = {:styles => gilt_results['products'], :count => gilt_results['total_found']}
 			results[:styles].concat(rtr_results)
