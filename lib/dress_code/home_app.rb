@@ -51,25 +51,25 @@ module DressCode
 			results.to_json
 		end
 
-		post '/code' do #create
-			params[:code]
-			params[:styles]
-			#save this sucker!
+		# post '/code' do #create
+		# 	params[:code]
+		# 	params[:styles]
+		# 	#save this sucker!
 
-			code_id = 'abc123'
+		# 	code_id = 'abc123'
 
-			redirect "/code/#{code_id}"
-		end
+		# 	redirect "/code/#{code_id}"
+		# end
 
-		post '/code/:id' do #update
-			params[:code]
-			params[:styles]
-			#save this sucker!
+		# post '/code/:id' do #update
+		# 	params[:code]  # the event
+		# 	params[:style] # array of styles
+		# 	#save this sucker!
 
-			code_id = 'abc123'
+		# 	code_id = 'abc123'
 
-			redirect "/code/#{code_id}"
-		end
+		# 	redirect "/code/#{code_id}"
+		# end
 
     get '/code/:id' do
       content_type :json

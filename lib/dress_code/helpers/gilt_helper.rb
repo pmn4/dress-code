@@ -13,7 +13,6 @@ module DressCode
 			}.merge(params)
 			p['q'] = p['q'].join(' ') if p['q'].respond_to?(:join)
 			request.params(p)
-puts request.inspect
 			request.perform.parse
 		end
 	end

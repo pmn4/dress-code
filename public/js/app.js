@@ -35,3 +35,13 @@ $(document).delegate(".style-tile", "click", function() {
   $input.prop('checked', !input.checked);
   $("#dress-code-header").toggleClass("submittable", !!($(".style-tile input:checked").length));
 });
+
+$("#dress-code-header").toggleClass("submittable", true);
+
+$("#submit-dress-code").click(function(e) {
+  e.preventDefault();
+
+  localStorage.dressCode = $(this).closest("form").serialize();
+
+  window.location.href = "/facebook/login";
+});

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Dress Code</title>
+    <link href='/styles/styles.css' rel='stylesheet'>
+  </head>
+  <body>
+    <form action="/code" method="post">
+      <header>
+        <div id="filter-menu-cta">&laquo; filters</div>
+        <div class="header-wrapper" id="dress-code-header">
+          <object class="logo" data="/images/dress-code-logo.svg" type="image/svg+xml"></object>
+          <h1>Dress Code</h1>
+          <h2>You Can't Dress Your Friends</h2>
+          <h3>...but you can try</h3>
+          <div class="instructions">
+            <p>
+              Choose the things (1 is fine) that you want your guests to wear
+            </p>
+          </div>
+        </div>
+      </header>
+      <div id='page-content' class="facebook-events">
+
+<h3>For Which Event Would You Like to Assign This Dress Code<span>?</span></h3>
+<ul class="submittable"> <!-- quick hack -->
+	<% @events.each do |event| %>
+		<li>
+			<button class="event-dress-code btn" value="<%= event['id'] %>"><%= event['name'] %></button>
+		</li>
+	<% end %>
+</ul>
+
+      </div>
+    </form>
+    <script src='/js/lib/jquery-1.10.2.min.js'></script>
+    <script src='/js/lib/underscore-min.js'></script>
+    <script src='/js/lib/backbone-min.js'></script>
+    <script src='/js/lib/jquery.isotope.min.js'></script>
+
+    <script src='/js/models/event.js'></script>
+    <script src='/js/models/dress.js'></script>
+    <script src='/js/models/dress_code.js'></script>
+    <script src='/js/models/menswear.js'></script>
+    <script src='/js/views/home.js'></script>
+    <script src='/js/helpers.js'></script>
+    <script src='/js/app.js'></script>
+
+    <script>
+    	$(function(){
+    		$(document).delegate("button.event-dress-code", "click", function(e) {
+    			e.preventDefault();
+    			$.post("/facebook/event/" + $(this).val() + "/simple", localStorage.dressCode);
+    		});
+    	});
+    </script>
+  </body>
+</html>

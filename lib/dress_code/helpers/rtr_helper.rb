@@ -13,8 +13,8 @@ module RTR
 			def meta
 				@meta ||= JSON.parse(name) rescue nil
 				# this is a super gross hack... deal with it!
-				@label = dress_code? ? @meta['name'] : self.name
-				@search = dress_code? ? @meta['search'] : self.name
+				@label = @meta.present? ? @meta['name'] : self.name
+				@search = @meta.present? ? @meta['search'] : self.name
 				# (end) this is a super gross hack... deal with it!
 				@meta
 			end

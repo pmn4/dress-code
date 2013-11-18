@@ -11,6 +11,3 @@ var DressCode = Backbone.Model.extend({
 		return this.id ? '/code/' + this.id : '/code';
 	}
 });
-
-var dc = new DressCode({"event": {"id": "abc123"}, "styles": [{"abc": 123}]});
-dc.save();

@@ -13,6 +13,7 @@ module DressCode
       include Mongoid::Document
 
       field :event_data, type: String
+      field :dress_code_data, type: String
     end
 
 		TOKEN_COOKIE_NAME = 'fb_id'
@@ -67,16 +68,30 @@ module DressCode
         end
 
         events.to_json
+        		@events = events
+        		erb :'facebook_events'
 			end
 
 			# app.post "/#{@@provider_name}/event/:event_id" do
-			app.get "/#{@@provider_name}/event/:event_id/simple" do
+			app.post "/#{@@provider_name}/event/:event_id/simple" do
 				access_token = request.cookies[TOKEN_COOKIE_NAME]
+
+				begin
+					fb_event = Event.find(params[:event_id])
+					dc_event = Event.new({
+						:event_data => fb_event.to_json,
+						:dress_code_data => params[:style].to_a.to_json
+					})
+					dc = dc_event.save
+					puts 'dc', dc.to_json
+				rescue Exception => e
+					puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
+				end
 
 				@graph = Koala::Facebook::API.new(access_token)
 				me = @graph.get_object('me')
 				post = @graph.put_wall_post('This Event Has a Dress Code', {
-					:link => "http://dress-code.herokuapp.com/code/#{params[:code_id]}",
+					:link => "http://dress-code.herokuapp.com/code/#{dc['_id']}",
 					:picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
