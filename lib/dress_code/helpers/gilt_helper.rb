@@ -1,13 +1,16 @@
 module DressCode
 	module GiltHelper
+		def self.gilt_api_key
+			ENV['GILT_API_KEY'] || '4ca357757754e668de3549aeb2ec7e88' #sample app
+		end
 		def self.gilt_client
-			@gilt_client ||= Gilt::Product.client('0b6c9ad5cbc67f6c1d7ff738f6e19d4a')
+			@gilt_client ||= Gilt::Product.client(gilt_api_key)
 			@gilt_client
 		end
 		def self.query_results(params)
 			request = gilt_client.query
 			p = {
-				'apikey' => '0b6c9ad5cbc67f6c1d7ff738f6e19d4a',
+				'apikey' => gilt_api_key,
 				'store' => Gilt::Stores::MEN, # was causing 0 results
 				'rows' => 100
 			}.merge(params)
