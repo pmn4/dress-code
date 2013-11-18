@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source 'https://repo.fury.io/NtMHFEUU3ZE2nCvRGyyp/me/'
+source "https://rubygems.org"
 ruby '1.9.3'
 
 # Main application
@@ -18,8 +19,7 @@ gem 'mongo'
 gem 'mongoid', '~> 2.0.0'
 
 # RTR services
-# gem 'rtr_ruby_api_clients', '0.4.52', :path => File.dirname(__FILE__) + '/lib'
-gem 'rtr_ruby_api_clients', '0.4.52'
+gem 'rtr_ruby_api_clients', '0.4.55'
 
 # Third party services
 gem 'gilt'

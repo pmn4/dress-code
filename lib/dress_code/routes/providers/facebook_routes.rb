@@ -83,7 +83,6 @@ module DressCode
 						:dress_code_data => params[:style].to_a.to_json
 					})
 					dc_event.save
-					puts 'dc_event', dc_event.to_json
 				rescue Exception => e
 					puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
 				end
@@ -91,8 +90,10 @@ module DressCode
 				@graph = Koala::Facebook::API.new(access_token)
 				me = @graph.get_object('me')
 				post = @graph.put_wall_post('This Event Has a Dress Code', {
-					:link => "http://dress-code.herokuapp.com/code/#{dc_event['_id']}",
-					:picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
+					# :link => "http://dress-code.herokuapp.com/#{dc_event['_id']}",
+					:link => "http://local.dress-code.herokuapp.com/#{dc_event['_id']}",
+					# :picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
+					:picture => 'http://www.pmnewell.com/img/dress-code-logo.png',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
 

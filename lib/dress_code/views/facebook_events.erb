@@ -51,7 +51,13 @@
     	$(function(){
     		$(document).delegate("button.event-dress-code", "click", function(e) {
     			e.preventDefault();
-    			$.post("/facebook/event/" + $(this).val() + "/simple", localStorage.dressCode);
+    			var fbId = $(this).val();
+    			$.post("/facebook/event/" + fbId + "/simple", localStorage.dressCode).complete(function(){
+    				var url = "https://www.facebook.com/events/" + fbId;
+            window.location.href = url;
+            // var win = window.open(url, '_blank');
+            // win.focus();
+    			});
     		});
     	});
     </script>

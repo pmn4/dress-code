@@ -45,7 +45,6 @@ module RTR
 					next if [:@styles, :@rejected_styles].include?(iv)
 
 					iv_name = iv.to_s[1..-1]
-puts '>>>>>', iv.to_s, send(iv_name), '<<<<<'
 					hash[iv_name.camelize(:lower)] = send(iv_name).as_json(options) if self.respond_to?(iv_name)
 				end
 				hash

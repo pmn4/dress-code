@@ -83,9 +83,8 @@
       <div>
         <ul>
           <% _.each(filters, function(filter) { %>
-            <% console.log(filter); %>
             <li>
-              <a href="" class='btn-filter'>
+              <a href="/?shortlistId=<%= filter.id %>" class='btn-filter'>
                 <%= filter.label %>
               </a>
             </li>
