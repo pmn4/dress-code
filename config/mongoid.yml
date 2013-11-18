@@ -14,6 +14,9 @@ test:
 production:
   sessions:
     default:
-      database: test
+      database: app19378148
       hosts:
-        - localhost:27017
+        - paulo.mongohq.com:10017
+      username: heroku
+      password: b37d2a8ec2c8f52ff9e8faf3f643ca51
+  database: app19378148
