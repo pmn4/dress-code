@@ -1,6 +1,5 @@
 var HomeView = Backbone.View.extend({
   initialize: function(options) {
-    var self = this;
     // this.secondCollection = options.collection;
 
     // this.collection = new DressCollection();
@@ -9,6 +8,9 @@ var HomeView = Backbone.View.extend({
     this.filters = new Filters();
     this.styles = new Styles();
 
+    this.fetchAndRender();
+  }, fetchAndRender: function() {
+    var self = this;
     // Don't render the page until both dresses AND menswear are ready
     var byref = {activeRequests: 0},
         fnSuccess = function() {
@@ -43,7 +45,7 @@ var HomeView = Backbone.View.extend({
   },
   events: {
     "submit": "submit"
-  , 'click .btn-filter': 'render'
+  , 'click .btn-filter': 'fetchAndRender'
   },
   render: function() {
     $(this.el).html(this.template());

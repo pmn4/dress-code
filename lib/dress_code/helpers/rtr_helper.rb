@@ -56,19 +56,21 @@ end
 module DressCode
 	module RtrHelper
 		def self.user_service_client
-			@user_service_client ||= UserServiceClient.new({
-				:host => "http://userservice-lb.stage.renttherunway.it:8088",
-				:username => 'photoadmin',
-				:password => 'DC8B79F2-FCE1-4738-90A8-5391A28929C1'
-			})
+			config = {
+				:host => "http://userservice-lb#{'n' if ENV['RACK_ENV'] == 'production'}.stage.renttherunway.it:8088"
+			}
+			config[:username] = ENV['USER_SERVICE_USERNAME'].nil? ? 'username' : ENV['USER_SERVICE_USERNAME']
+			config[:password] = ENV['USER_SERVICE_PASSWORD'].nil? ? 'password' : ENV['USER_SERVICE_PASSWORD']
+			@user_service_client ||= UserServiceClient.new(config)
 			@user_service_client
 		end
 		def self.product_catalog_client
-			@product_catalog_client ||= ProductCatalogClient.new({
-				:host => "http://pcvarnish-lb.stage.renttherunway.it:6081",
-				:username => "username",
-				:password => "password"
-			})
+			config = {
+				:host => "http://pcvarnish-lb#{'n' if ENV['RACK_ENV'] == 'production'}.stage.renttherunway.it:6081"
+			}
+			config[:username] = ENV['PRODUCT_CATALOG_USERNAME'].nil? ? 'username' : ENV['PRODUCT_CATALOG_USERNAME']
+			config[:password] = ENV['PRODUCT_CATALOG_PASSWORD'].nil? ? 'password' : ENV['PRODUCT_CATALOG_PASSWORD']
+			@product_catalog_client ||= ProductCatalogClient.new(config)
 			@product_catalog_client
 		end
 		def self.get_dress_code_shortlists()
