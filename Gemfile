@@ -1,4 +1,4 @@
-source 'https://repo.fury.io/SeCrEt-ToKeN/me/'
+source 'https://repo.fury.io/NtMHFEUU3ZE2nCvRGyyp/me/'
 source "https://rubygems.org"
 ruby '1.9.3'
 
