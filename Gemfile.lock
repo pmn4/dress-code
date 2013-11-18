@@ -87,7 +87,7 @@ GEM
     rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.10.1)
-    rtr_ruby_api_clients (0.4.52)
+    rtr_ruby_api_clients (0.4.55)
       activemodel
       activesupport
       agent_orange (= 0.1.6)
@@ -141,7 +141,7 @@ DEPENDENCIES
   pry-debugger
   rake (= 10.1)
   rspec (= 2.10)
-  rtr_ruby_api_clients (= 0.4.52)
+  rtr_ruby_api_clients (= 0.4.55)
   sass
   sinatra (= 1.4.3)
   sinatra-contrib

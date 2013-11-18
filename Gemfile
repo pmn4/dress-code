@@ -18,8 +18,7 @@ gem 'mongo'
 gem 'mongoid', '~> 2.0.0'
 
 # RTR services
-# gem 'rtr_ruby_api_clients', '0.4.52', :path => File.dirname(__FILE__) + '/lib'
-gem 'rtr_ruby_api_clients', '0.4.52'
+gem 'rtr_ruby_api_clients', '0.4.55'
 
 # Third party services
 gem 'gilt'
