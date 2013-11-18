@@ -20,8 +20,8 @@ module DressCode
 
 		def self.registered(app)
 			@@provider_name = 'facebook'
-			@@app_id = '356865567790385'
-			@@secret_key = 'c79a6cf949fb13dfcf66fb464c3053b4' # todo: move to config
+			@@app_id = ENV['FACEBOOK_APP_ID'] || '356865567790385'
+			@@secret_key = ENV['FACEBOOK_SECRET_KEY'] || 'c79a6cf949fb13dfcf66fb464c3053b4'
 			@@callback_path = "/#{@@provider_name}/oauth"
 
 			Koala::Utils.logger.level = Logger::DEBUG
