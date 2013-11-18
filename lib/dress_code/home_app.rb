@@ -30,7 +30,7 @@ module DressCode
 			results = RtrHelper::get_dress_code_shortlists
 
 			content_type :json
-			{filters: results}.to_json
+			{:filters => results}.to_json
 		end
 
 		get '/filter' do
@@ -38,7 +38,6 @@ module DressCode
 			if shortlist_id.present?
 				shortlist = RtrHelper::get_shortlist(shortlist_id)
 			else
-				puts '>s>', RtrHelper::get_dress_code_shortlists.to_json, '<<<'
 				shortlist = RtrHelper::get_dress_code_shortlists().first
 			end
 			gilt_results = GiltHelper::query_results(shortlist.search)
@@ -50,6 +49,26 @@ module DressCode
 
 			content_type :json
 			results.to_json
+		end
+
+		post '/code' do #create
+			params[:code]
+			params[:styles]
+			#save this sucker!
+
+			code_id = 'abc123'
+
+			redirect "/code/#{code_id}"
+		end
+
+		post '/code/:id' do #update
+			params[:code]
+			params[:styles]
+			#save this sucker!
+
+			code_id = 'abc123'
+
+			redirect "/code/#{code_id}"
 		end
 
     get '/code/:id' do

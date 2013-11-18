@@ -75,12 +75,9 @@ module DressCode
 
 				@graph = Koala::Facebook::API.new(access_token)
 				me = @graph.get_object('me')
-				post = @graph.put_wall_post('Dress Code!', {
-					# :image => [
-					# 	{:url => 'http://zoomq.qiniudn.com/ZQScrapBook/ZqFLOSS/data/20130308122939/eric_weinstein@2x-491974aaea7dada90a3302a369b18127.jpg'},
-					# 	{:url => 'http://www.tokyois.com/main/wp-content/uploads/2011/02/Patrick_Newell_info.jpg'}
-					# ],
-					:picture => 'http://www.tokyois.com/main/wp-content/uploads/2011/02/Patrick_Newell_info.jpg',
+				post = @graph.put_wall_post('This Event Has a Dress Code', {
+					:link => "http://dress-code.herokuapp.com/code/#{params[:code_id]}",
+					:picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
 

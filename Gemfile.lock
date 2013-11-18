@@ -141,7 +141,7 @@ DEPENDENCIES
   pry-debugger
   rake (= 10.1)
   rspec (= 2.10)
-  rtr_ruby_api_clients
+  rtr_ruby_api_clients (= 0.4.52)
   sass
   sinatra (= 1.4.3)
   sinatra-contrib

@@ -36,7 +36,6 @@ var HomeView = Backbone.View.extend({
     });
     byref.activeRequests++;
     this.styles.fetch({
-      data: 'q[]=suit',
       success: fnSuccess
     });
 
@@ -61,7 +60,6 @@ var HomeView = Backbone.View.extend({
     //     rowHeight: 125
     //   }
     // });
-console.log('filters', this.filters);
     var filters = this.filters['models'][0]['attributes']['filters'];
     $('#dress-code-filters').append(_.template($("#tpl-filters").html(), {filters: filters}));
     var styles = this.styles['models'][0]['attributes']['styles'];
@@ -75,6 +73,15 @@ console.log('filters', this.filters);
     });
 
     return this;
+  },
+  events: {
+    "submit": "submit"
+  },
+  submit: function(e) {
+    e.preventDefault();
+    var _this = this;
+
+    
   }
 });
 

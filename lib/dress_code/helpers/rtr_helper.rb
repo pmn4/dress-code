@@ -7,22 +7,20 @@ module RTR
 			attr_accessor :styles
 			attr_accessor :rejected_styles
 
+			attr_reader :label
+			attr_reader :search
+
 			def meta
 				@meta ||= JSON.parse(name) rescue nil
+				# this is a super gross hack... deal with it!
+				@label = dress_code? ? @meta['name'] : self.name
+				@search = dress_code? ? @meta['search'] : self.name
+				# (end) this is a super gross hack... deal with it!
 				@meta
 			end
 
 			def dress_code?
-puts '>>>>', @meta, name, '<<<<<'
 				meta.present?
-			end
-
-			def label
-				dress_code? ? meta['name'] : self.name
-			end
-
-			def search
-				dress_code? ? meta['search'] : self.name
 			end
 
 			def styles?
@@ -43,10 +41,11 @@ puts '>>>>', @meta, name, '<<<<<'
 
 			def as_json(options = {})
 				hash = {}
-				self.instance_variables.concat([:label, :search]).each do |iv|
+				self.instance_variables.each do |iv|
 					next if [:@styles, :@rejected_styles].include?(iv)
 
 					iv_name = iv.to_s[1..-1]
+puts '>>>>>', iv.to_s, send(iv_name), '<<<<<'
 					hash[iv_name.camelize(:lower)] = send(iv_name).as_json(options) if self.respond_to?(iv_name)
 				end
 				hash

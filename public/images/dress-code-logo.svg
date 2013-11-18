@@ -10,14 +10,17 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 200 200"
+   viewBox="0 0 205.375 205.375"
    preserveAspectRatio="xMinYMin meet"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="dress-code-logo.svg"
    width="100%"
-   height="100%">
+   height="100%"
+   inkscape:export-filename="/Users/pmn/code/personal/dress-code/public/images/dress-code-logo.png"
+   inkscape:export-xdpi="180"
+   inkscape:export-ydpi="180">
   <defs
      id="defs4">
     <clipPath
@@ -74,7 +77,7 @@
        width="1.6"
        height="2"
        y="-0.5"
-       x="-0.3"
+       x="-0.30000001"
        color-interpolation-filters="sRGB">
       <feTurbulence
          id="feTurbulence3927"
@@ -105,16 +108,16 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="3.236"
-     inkscape:cx="79.584386"
-     inkscape:cy="87.91723"
+     inkscape:cx="92.933196"
+     inkscape:cy="102.96562"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1296"
-     inkscape:window-height="1148"
-     inkscape:window-x="1702"
-     inkscape:window-y="348"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1280"
+     inkscape:window-height="752"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -127,7 +130,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -136,7 +139,7 @@
      id="layer2"
      inkscape:label="paths"
      style="display:none"
-     transform="translate(497.84375,-1470.0938)">
+     transform="translate(500.53125,-1467.4063)">
     <path
        style="opacity:0.5;fill:#0000ff;fill-opacity:1;stroke:#ff0000;stroke-width:11.49383354;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
        d="m 229.89719,246.17053 c -384.49949,0 -696.19793,311.6984 -696.19793,696.19794 0,384.49953 311.69844,696.19793 696.19793,696.19793 384.49955,0 696.19795,-311.6984 696.19795,-696.19793 0,-384.49954 -311.6984,-696.19794 -696.19795,-696.19794 z"
@@ -157,7 +160,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(497.84375,-1470.0938)">
+     transform="translate(500.53125,-1467.4063)">
     <g
        id="g3896"
        transform="matrix(0.13741278,0,0,0.13741278,-429.43366,1440.6016)">
@@ -183,7 +186,7 @@
       <g
          id="g3288">
         <rect
-           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340616999999988;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340629;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
            id="rect3765"
            width="45.714287"
            height="91.428574"
@@ -197,18 +200,18 @@
            height="91.428574"
            width="45.714287"
            id="rect3769"
-           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340616999999988;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340629;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <rect
            y="317.26297"
            x="-895.16394"
            height="91.428574"
            width="45.714287"
            id="rect3767"
-           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340616999999988;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340629;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
            transform="matrix(0.27119121,-0.96252549,0.96252549,0.27119121,0,0)" />
         <rect
            transform="matrix(-0.27119121,-0.96252549,-0.96252549,0.27119121,0,0)"
-           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340616999999988;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:#ffffff;fill-opacity:1;stroke:#2fc1d0;stroke-width:2.50340629;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
            id="rect3773"
            width="45.714287"
            height="91.428574"
@@ -222,7 +225,7 @@
            style="fill:#2fc1d0;fill-opacity:1;stroke:none;filter:url(#filter3338)" />
         <text
            xml:space="preserve"
-           style="font-size:222.66294861000000083px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2fc1d0;fill-opacity:1;stroke:none;font-family:Amatic SC;-inkscape-font-specification:Amatic SC Bold"
+           style="font-size:222.66294861px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2fc1d0;fill-opacity:1;stroke:none;font-family:Amatic SC;-inkscape-font-specification:Amatic SC Bold"
            x="388.39755"
            y="851.60901"
            id="text3801"
@@ -236,7 +239,7 @@
            id="text3807"
            y="851.60901"
            x="-252.08282"
-           style="font-size:222.66294861000000083px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2fc1d0;fill-opacity:1;stroke:none;font-family:Amatic SC;-inkscape-font-specification:Amatic SC Bold"
+           style="font-size:222.66294861px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2fc1d0;fill-opacity:1;stroke:none;font-family:Amatic SC;-inkscape-font-specification:Amatic SC Bold"
            xml:space="preserve"><tspan
              y="851.60901"
              x="-252.08282"

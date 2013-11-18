@@ -172,6 +172,21 @@ $tile-spacing: $column-width - $tile-size - 2 * $tile-border;
   }
   &.selected {
     border-color: $tertiary-color;
+
+    &:after {
+      content: "";
+      position: absolute;
+      right: $tile-border;
+      bottom: $tile-border;
+      margin-top: -11px;
+      border: 4px solid $tertiary-color;
+      border-top: 0;
+      border-right: 0;
+      width: 12px;
+      height: 4px;
+
+      @include transform(rotate(-45deg));
+    }
   }
 
   &.no-match {
