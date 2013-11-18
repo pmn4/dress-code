@@ -38,7 +38,7 @@ module DressCode
 			if shortlist_id.present?
 				shortlist = RtrHelper::get_shortlist(shortlist_id)
 			else
-				shortlist = RtrHelper::get_dress_code_shortlists.select{|s| s.id == '528a34dc0cf23f354a5178d4'}.first
+				shortlist = RtrHelper::get_dress_code_shortlists.first
 			end
 			gilt_results = GiltHelper::query_results(shortlist.search)
 			rtr_results = RtrHelper::query_results(shortlist.id)
