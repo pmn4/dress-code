@@ -36,8 +36,6 @@ $(document).delegate(".style-tile", "click", function() {
   $("#dress-code-header").toggleClass("submittable", !!($(".style-tile input:checked").length));
 });
 
-$("#dress-code-header").toggleClass("submittable", true);
-
 $("#submit-dress-code").click(function(e) {
   e.preventDefault();
 

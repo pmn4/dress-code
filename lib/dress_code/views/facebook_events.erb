@@ -53,7 +53,10 @@
     			e.preventDefault();
     			var fbId = $(this).val();
     			$.post("/facebook/event/" + fbId + "/simple", localStorage.dressCode).complete(function(){
-    				window.location.href = "https://www.facebook.com/events/" + fbId;
+    				var url = "https://www.facebook.com/events/" + fbId;
+            window.location.href = url;
+            // var win = window.open(url, '_blank');
+            // win.focus();
     			});
     		});
     	});
