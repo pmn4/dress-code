@@ -1,3 +1,8 @@
+production:
+  uri: <%= ENV['MONGOHQ_URL'] %>
+  max_retries_on_connection_failure: 20
+  persist_in_safe_mode: true
+  skip_version_check: true
 development:
   sessions:
     default:
@@ -11,12 +16,3 @@ test:
       database: test
       hosts:
         - localhost:27017
-production:
-  sessions:
-    default:
-      database: app19378148
-      hosts:
-        - paulo.mongohq.com:10017
-      username: heroku
-      password: b37d2a8ec2c8f52ff9e8faf3f643ca51
-  database: app19378148
