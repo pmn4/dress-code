@@ -1,4 +1,8 @@
-ENV["RACK_ENV"] ||= "development"
+# Set the environment to production if we detect the MongoHQ instance
+ENV['RACK_ENV'] = 'production' if ENV['MONGOHQ_URL']
+
+# Otherwise, we're in development
+ENV['RACK_ENV'] ||= 'development'
 
 require 'bundler'
 require 'mongoid'
