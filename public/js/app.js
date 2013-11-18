@@ -45,3 +45,9 @@ $("#submit-dress-code").click(function(e) {
 
   window.location.href = "/facebook/login";
 });
+
+// Stop default action, let Backbone re-render the view
+// $(document).delegate('.btn-filter', 'click', function(e) {
+//   e.preventDefault();
+// });
+

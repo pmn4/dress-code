@@ -41,6 +41,10 @@ var HomeView = Backbone.View.extend({
 
     // this.collection.bind('reset', this.render, this);
   },
+  events: {
+    "submit": "submit"
+  , 'click .btn-filter': 'render'
+  },
   render: function() {
     $(this.el).html(this.template());
     // var occasions = this.collection['models'][0]['attributes']['occasion'];
@@ -74,14 +78,9 @@ var HomeView = Backbone.View.extend({
 
     return this;
   },
-  events: {
-    "submit": "submit"
-  },
   submit: function(e) {
     e.preventDefault();
     var _this = this;
-
-    
   }
 });
 
