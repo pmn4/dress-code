@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source 'https://repo.fury.io/SeCrEt-ToKeN/me/'
+source "https://rubygems.org"
 ruby '1.9.3'
 
 # Main application
