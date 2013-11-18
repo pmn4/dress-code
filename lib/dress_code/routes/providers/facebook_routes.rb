@@ -77,13 +77,13 @@ module DressCode
 				access_token = request.cookies[TOKEN_COOKIE_NAME]
 
 				begin
-					fb_event = Event.find(params[:event_id])
+					# fb_event = Event.find(params[:event_id])
 					dc_event = Event.new({
-						:event_data => fb_event.to_json,
+						:event_data => {}, # fb_event.to_json,
 						:dress_code_data => params[:style].to_a.to_json
 					})
-					dc = dc_event.save
-					puts 'dc', dc.to_json
+					dc_event.save
+					puts 'dc_event', dc_event.to_json
 				rescue Exception => e
 					puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
 				end
@@ -91,16 +91,10 @@ module DressCode
 				@graph = Koala::Facebook::API.new(access_token)
 				me = @graph.get_object('me')
 				post = @graph.put_wall_post('This Event Has a Dress Code', {
-					:link => "http://dress-code.herokuapp.com/code/#{dc['_id']}",
+					:link => "http://dress-code.herokuapp.com/code/#{dc_event['_id']}",
 					:picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
-
-        ################
-        ##### TODO #####
-        ################
-        #
-        # Write filter images to Mongo document
 
 				post.to_json
 			end
