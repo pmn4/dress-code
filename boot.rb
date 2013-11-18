@@ -12,6 +12,8 @@ Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 
 Dir["./lib/**/*.rb"].each { |f| require f }
 
+puts "About to connect to Mongo in #{ENV['RACK_ENV']} environment..."
+
 # Mongoid config
 Mongoid.load!('config/mongoid.yml')
 
