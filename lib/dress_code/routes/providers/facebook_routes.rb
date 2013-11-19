@@ -84,9 +84,8 @@ module DressCode
 				end
 
 				@graph = Koala::Facebook::API.new(access_token)
-				url = URI(request.host.to_s)
+				url = URI(request.url.to_s)
 				url.path = "/#{dc_event['_id']}"
-puts "posting to facebook: '#{url}'"
 				post = @graph.put_wall_post('This Event Has a Dress Code', {
 					# :link => "http://dress-code.herokuapp.com/#{dc_event['_id']}",
 					:link => url.to_s,
