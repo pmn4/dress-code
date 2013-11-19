@@ -1,10 +1,48 @@
-@import '_variables';
+@import '_variables',
+        'compass/css3/transition';
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@include keyframes(rainbow) {
+  0% {
+    border-color: hsl(0, 100%, 50%);
+  }
+  33% {
+    border-color: hsl(120, 100%, 50%);
+  }
+  67% {
+    border-color: hsl(240, 100%, 50%);
+  }
+  100% {
+    border-color: hsl(360, 100%, 50%);
+  }
+}
 
 header {
-	padding-bottom: 20px;
-	border-bottom: 1px solid $primary-color;
+	padding-bottom: 10px;
+	border-bottom: 5px solid $primary-color;
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+
+	.ajaxing & {
+		$duration: 4s;
+		border-bottom-color: hsl(0, 100%, 50%);
+		-webkit-animation: rainbow $duration linear infinite;
+		animation: rainbow $duration linear infinite;
+	}
 
 	.header-wrapper {
 		position: relative;

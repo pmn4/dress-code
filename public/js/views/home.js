@@ -1,88 +1,70 @@
 var HomeView = Backbone.View.extend({
   initialize: function(options) {
-    // this.secondCollection = options.collection;
-
-    // this.collection = new DressCollection();
-    // this.menswearCategories = new MensWearCategoryCollection();
-    // this.menswear = new MensWearCollection();
-    this.filters = new Filters();
     this.styles = new Styles();
 
-    this.fetchAndRender();
-  }, fetchAndRender: function() {
-    var self = this;
-    // Don't render the page until both dresses AND menswear are ready
-    var byref = {activeRequests: 0},
-        fnSuccess = function() {
-          byref.activeRequests--;
-          if(!byref.activeRequests) {
-            self.render();
-          }
-        };
-    // byref.activeRequests++;
-    // this.collection.fetch({
-    //   success: fnSuccess
-    // });
-    // byref.activeRequests++;
-    // this.menswearCategories.fetch({
-    //   success: fnSuccess
-    // });
-    // byref.activeRequests++;
-    // this.menswear.fetch({
-    //   data: 'q[]=Dress',
-    //   success: fnSuccess
-    // });
-    byref.activeRequests++;
-    this.filters.fetch({
-      success: fnSuccess
-    });
-    byref.activeRequests++;
-    this.styles.fetch({
-      success: fnSuccess
-    });
+    this.render();
 
-    // this.collection.bind('reset', this.render, this);
+    var self = this;
+    $(document).delegate(".btn-filter", "click", function(e) {
+      self.render(e);
+    });
+    $(document).delegate(".style-tile", "click", function() {
+      var $this = $(this), $input = $this.find("input"), input = $input.get(0);
+      $this.toggleClass("selected", !input.checked);
+      $input.prop('checked', !input.checked);
+      $("#dress-code-header").toggleClass("submittable", !!($(".style-tile input:checked").length));
+    });
   },
-  events: {
-    "submit": "submit"
-  , 'click .btn-filter': 'fetchAndRender'
-  },
-  render: function() {
-    $(this.el).html(this.template());
-    // var occasions = this.collection['models'][0]['attributes']['occasion'];
-    // _.each(occasions, function(element, index, list) {
-    //   $('#occasion-types').append('<li>' + element + '</li>');
-    // });
-    // var categories = this.menswearCategories['models'][0]['attributes']['categories'];
-    // _.each(categories, function(element, index, list) {
-    //   $('#menswear-categories').append('<li>' + element + '</li>');
-    // });
-    // var menswear = this.menswear['models'][0]['attributes']['products'];
-    // $("#menswear").append(_.template($("#tpl-menswear").html(), {styles: menswear})).isotope({
-    //   itemSelector : '.style-tile-wrapper',
-    //   layoutMode : 'masonry',
-    //   masonry: {
-    //     columnWidth: 125,
-    //     rowHeight: 125
-    //   }
-    // });
-    var filters = this.filters['models'][0]['attributes']['filters'];
-    $('#dress-code-filters').append(_.template($("#tpl-filters").html(), {filters: filters}));
-    var styles = this.styles['models'][0]['attributes']['styles'];
-    $("#styles-container").append(_.template($("#tpl-styles").html(), {styles: styles})).isotope({
-      itemSelector : '.style-tile-wrapper',
-      layoutMode : 'masonry',
-      masonry: {
-        columnWidth: 125,
-        rowHeight: 125
+  render: function(e) {
+    if(e) e.preventDefault();
+    this.$el.html(this.template());
+
+    var self = this;
+    AjaxLoading.ajaxing();
+    this.styles.fetch({
+      data: {"shortlistId": e ? $(e.target).data("shortlistId") : ""},
+      success: function() {
+        var styles = self.styles['models'][0]['attributes']['styles'];
+        if(self.$el.hasClass('isotope')) {
+          self.$el.isotope('destroy');
+        }
+        self.$el.html(_.template($("#tpl-styles").html(), {styles: styles})).isotope({
+          itemSelector : '.style-tile-wrapper',
+          layoutMode : 'masonry',
+          masonry: {
+            columnWidth: 125,
+            rowHeight: 125
+          }
+        });
+      },
+      complete: function() {
+        AjaxLoading.ajaxed();
       }
     });
 
     return this;
-  },
-  submit: function(e) {
-    e.preventDefault();
-    var _this = this;
   }
 });
 
+var FilterView = Backbone.View.extend({
+  initialize: function(options) {
+    this.filters = new Filters();
+
+    this.render();
+  },
+  render: function(e) {
+    if(e) e.preventDefault();
+    var self = this;
+    // Don't render the page until both dresses AND menswear are ready
+    AjaxLoading.ajaxing();
+    this.filters.fetch({
+      success: function() {
+        var filters = self.filters['models'][0]['attributes']['filters'];
+        self.$el.prepend(_.template($("#tpl-filters").html(), {filters: filters})).addClass("initialized");
+      },
+      complete: function() {
+        AjaxLoading.ajaxed();
+      }
+    });
+  }
+});

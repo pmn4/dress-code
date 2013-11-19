@@ -57,17 +57,6 @@ module DressCode
 				me = @graph.get_object('me')
 				events = @graph.get_connections(me['id'], 'events')
 
-        # Write all events to Mongo
-        events.each do |event|
-          begin
-            fb_event = Event.new({:event_data => event.to_json})
-            fb_event.save
-          rescue Exception => e
-            puts "\n\nAn error occurred saving FB event data: #{e}\n\n"
-           end
-        end
-
-        events.to_json
         		@events = events
         		erb :'facebook_events'
 			end
@@ -76,11 +65,18 @@ module DressCode
 			app.post "/#{@@provider_name}/event/:event_id/simple" do
 				access_token = request.cookies[TOKEN_COOKIE_NAME]
 
+				event_data_hash = JSON.parse(params[:eventData])
+				dress_code_data_hash = params[:dressCodeData]
+				dress_code_data_hash.each{|key, val| dress_code_data_hash[key] = JSON.parse(val)}
+
+				halt 400, 'Missing Event Data' unless event_data_hash.present?
+				halt 400, 'Missing Dress Code Data' unless dress_code_data_hash.present?
+
 				begin
 					# fb_event = Event.find(params[:event_id])
 					dc_event = Event.new({
-						:event_data => {}, # fb_event.to_json,
-						:dress_code_data => params[:style].to_a.to_json
+						:event_data => event_data_hash.to_json,
+						:dress_code_data => dress_code_data_hash.to_json
 					})
 					dc_event.save
 				rescue Exception => e
@@ -91,9 +87,9 @@ module DressCode
 				me = @graph.get_object('me')
 				post = @graph.put_wall_post('This Event Has a Dress Code', {
 					# :link => "http://dress-code.herokuapp.com/#{dc_event['_id']}",
-					:link => "http://local.dress-code.herokuapp.com/#{dc_event['_id']}",
+					:link => "#{request.host}/#{dc_event['_id']}",
 					# :picture => 'http://dress-code.herokuapp.com/public/images/dress-code-logo.png',
-					:picture => 'http://www.pmnewell.com/img/dress-code-logo.png',
+					:picture => 'http://www.pmnewell.com/img/dress-code-app.png',
 					:type => 'dress-code-app:dress_code'
 				}, params[:event_id])
 

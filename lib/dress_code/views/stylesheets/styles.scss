@@ -34,6 +34,16 @@ h6 {
   span {
     font-weight: normal;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  em {
+    color: $primary-color;
+    font-size: 50%;
+  }
 }
 $h1-font-size: 64px; // this was just for the presentaiton I did
 $h6-font-size: 24px;
@@ -76,11 +86,16 @@ $filter-icon-color: $primary-color;
 #filter-menu {
   position: fixed;
   height: 100%;
-  left: -$filter-width;
   top: 0;
+  left: -$filter-width;
   height: 100%;
   z-index: 10; //isotope!
   color: $secondary-color;
+
+  margin-left: -50px; // to animate the appearance of the tab
+  .initialized & {
+    margin-left: 0;
+  }
 
   li {
     color: $secondary-color;
@@ -132,15 +147,17 @@ $filter-icon-color: $primary-color;
 #dress-code-filters {
   padding: 20px;
   ul {
+    margin-top: 20px;
     li {
+      font-size: 1em;
+      line-height: 1em;
       a {
-        color: $tertiary-color;
-        font-size: 20px;
+        color: $secondary-color;
         font-weight: bold;
         text-decoration: none;
 
         &:hover {
-          text-decoration: underline;
+          color: $tertiary-color;
         }
       }
     }
@@ -231,8 +248,8 @@ $tile-spacing: $column-width - $tile-size - 2 * $tile-border;
   padding: 20px 50px;
 
   background-color: $secondary-color;
-  border-color: mix($secondary-color, $tertiary-color, 75%);
-  color: mix($secondary-color, $tertiary-color, 75%);
+  border-color: mix($secondary-color, $primary-color, 75%);
+  color: mix($secondary-color, $primary-color, 75%);
   white-space: nowrap;
 
   @include transition(all 0.25s ease-out);
@@ -255,6 +272,61 @@ $tile-spacing: $column-width - $tile-size - 2 * $tile-border;
 
     &:hover {
       @include opacity(1.0);
+    }
+  }
+}
+
+.your-event,
+.the-dress-code {
+  margin: 20px auto;
+  width: 5 * $column-width;
+  color: $primary-color;
+
+  dl {
+    margin-top: 10px;
+  }
+  dt {
+    float: left;
+    margin-right: 10px;
+    width: 100px;
+    color: $secondary-color;
+    text-align: right;
+  }
+
+  @include clearfix;
+}
+.the-dress-code {
+  .style-tile-wrapper {
+    float: left;
+    margin: 0 $tile-spacing $tile-spacing 0;
+  }
+  .style-tile {
+    position: relative;
+    .cta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 5px 0;
+
+      text-align: center;
+      font-size: 16px;
+      line-height: 16px;
+
+      &.rtr {
+        background-color: $tertiary-color;
+        color: $primary-color;
+      }
+      &.gilt {
+        background-color: $secondary-color;
+        color: $primary-color;
+      }
+
+      em {
+        display: block;
+        font-size: 12px;
+        line-height: 12px;
+      }
     }
   }
 }

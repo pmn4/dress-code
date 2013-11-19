@@ -8,29 +8,23 @@
   <body>
     <form action="/code" method="post">
       <header>
-        <div id="filter-menu-cta">&laquo; filters</div>
         <div class="header-wrapper" id="dress-code-header">
           <object class="logo" data="/images/dress-code-logo.svg" type="image/svg+xml"></object>
-          <h1>Dress Code</h1>
+          <h1><a href="/">Dress Code</a></h1>
           <h2>You Can't Dress Your Friends</h2>
           <h3>...but you can try</h3>
-          <div class="instructions">
-            <p>
-              Choose the things (1 is fine) that you want your guests to wear
-            </p>
-          </div>
         </div>
       </header>
       <div id='page-content' class="facebook-events">
 
-<h3>For Which Event Would You Like to Assign This Dress Code<span>?</span></h3>
-<ul class="submittable"> <!-- quick hack -->
-	<% @events.each do |event| %>
-		<li>
-			<button class="event-dress-code btn" value="<%= event['id'] %>"><%= event['name'] %></button>
-		</li>
-	<% end %>
-</ul>
+        <h3>For Which Event Would You Like to Assign This Dress Code<span>?</span></h3>
+        <ul class="submittable"> <!-- quick hack -->
+          <% @events.each do |event| %>
+            <li>
+              <button class="event-dress-code btn" name="eventData" value="<%= ERB::Util.html_escape(event.to_json) %>"><%= event['name'] %></button>
+            </li>
+          <% end %>
+        </ul>
 
       </div>
     </form>
@@ -47,19 +41,5 @@
     <script src='/js/helpers.js'></script>
     <script src='/js/app.js'></script>
 
-    <script>
-    	$(function(){
-    		$(document).delegate("button.event-dress-code", "click", function(e) {
-    			e.preventDefault();
-    			var fbId = $(this).val();
-    			$.post("/facebook/event/" + fbId + "/simple", localStorage.dressCode).complete(function(){
-    				var url = "https://www.facebook.com/events/" + fbId;
-            window.location.href = url;
-            // var win = window.open(url, '_blank');
-            // win.focus();
-    			});
-    		});
-    	});
-    </script>
   </body>
 </html>

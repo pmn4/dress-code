@@ -13,7 +13,7 @@ module DressCode
 				'apikey' => gilt_api_key,
 				'store' => Gilt::Stores::MEN, # was causing 0 results
 				'rows' => 100
-			}.merge(params)
+			}.merge(params || {})
 			p['q'] = p['q'].join(' ') if p['q'].respond_to?(:join)
 			request.params(p)
 			request.perform.parse

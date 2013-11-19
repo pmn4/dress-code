@@ -1,14 +1,55 @@
-<h1>Dress Code Summary</h1>
-<h2>Check out your mega sweet event!</h2>
 <div id='dress-code-summary'>
   <!-- Because this is rendered by public/js/views/code.js, -->
   <!-- we're ALREADY IN AN UNDERSCORE TEMPLATE #templateception -->
   <% if (this.collection['models'][0]['attributes']['event_data']) { %>
-    <% var eventData = JSON.parse(this.collection['models'][0]['attributes']['event_data']); %>
-    <p>What: <%= eventData.name %></p>
-    <p>When: <%= eventData.start_time %></p>
-    <p>Where: <%= eventData.location %></p>
-  <% } else { %>
+    <%
+      var eventData = JSON.parse(this.collection['models'][0]['attributes']['event_data']);
+      var dressCodeData = JSON.parse(this.collection['models'][0]['attributes']['dress_code_data']);
+    %>
+    <div class="your-event">
+      <h3>Where To Be</h3>
+      <dl>
+        <dt>What:</dt>
+        <dd><%= eventData.name %></dd>
+        <dt>When:</dt>
+        <dd><%= eventData.start_time %></dd>
+        <dt>Where:</dt>
+        <dd><%= eventData.location %></dd>
+      </dl>
+    </div>
+
+    <div class="the-dress-code">
+      <h3>What To Wear <em>(or something like it)</em></h3>
+       <% _.each(_.sortBy(dressCodeData, function() { return Math.random(); }), function(style, index) { %>
+        <%
+          var img, is_gilt;
+          // the first item is probably too small, so lets try to get the second largest image
+          if(is_gilt = !!style.image_urls) {
+            var image_urls = _.toArray(style.image_urls);
+            img = (image_urls[1] || image_urls[0])[0];
+          } else {
+            img = {url: style['img270xFrontURL']}
+          }
+
+          var is_rtr = !is_gilt;
+          url = is_rtr ? style.seoURL + "?object_type=dress_code_app&action=click_dresses" : style.url;
+        %>
+        <% if(img) { %>
+          <div class="style-tile-wrapper">
+            <a href="<%= url %>" target="_blank">
+              <div class="style-tile double-match" style="background-image: url('<%= img.url %>');">
+                <% if(is_rtr) { %>
+                  <div class="cta rtr">Rent this!<em>Rent the Runway</em></div>
+                <% } else { %>
+                  <div class="cta gilt">Buy this!<em>Gilt Men</em></div>
+                <% } %>
+              </div>
+            </a>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+   <% } else { %>
     <p>(No event data)</p>
   <% } %>
 </div>

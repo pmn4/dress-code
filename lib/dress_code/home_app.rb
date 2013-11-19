@@ -1,4 +1,4 @@
-require 'sinatra'
+# require 'sinatra'
 require 'sinatra/base'
 require 'compass'
 
@@ -35,9 +35,8 @@ module DressCode
 
 		get '/filter' do
 			shortlist_id = params[:shortlistId]
-			if shortlist_id.present?
-				shortlist = RtrHelper::get_shortlist(shortlist_id)
-			else
+			shortlist = RtrHelper::get_shortlist(shortlist_id) unless shortlist_id.blank?
+			if shortlist.blank? || !shortlist.dress_code?
 				shortlist = RtrHelper::get_dress_code_shortlists.first
 			end
 			gilt_results = GiltHelper::query_results(shortlist.search)
