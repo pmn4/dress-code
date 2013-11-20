@@ -92,7 +92,8 @@ module DressCode
 					:picture => 'http://dress-code.herokuapp.com/images/dress-code-logo.png',
 					:caption => 'View the Dress Code',
 					:description => "Click to see examples of what #{me['first_name']} would like you to wear.",
-					:type => 'dress-code-app:dress_code'
+					:type => 'link',
+					:actions => 'like'
 				}, params[:event_id])
 
 				post.to_json
